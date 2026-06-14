@@ -104,7 +104,7 @@ export default function GaleriaPage() {
                   <div className="bg-surface-container overflow-hidden shadow-2xl group rounded-sm aspect-[4/5] md:aspect-video relative">
                     <img
                       alt={image.alt}
-                      className="w-full h-full object-cover grayscale transition-all duration-[2000ms] group-hover:grayscale-0 group-hover:scale-105 pointer-events-none"
+                      className="w-full h-full object-cover md:grayscale transition-all duration-[2000ms] md:group-hover:grayscale-0 group-hover:scale-105 pointer-events-none"
                       src={image.src}
                     />
                     <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-primary/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
@@ -117,14 +117,14 @@ export default function GaleriaPage() {
 
             <button
               onClick={() => scrollByAmount('left')}
-              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 rounded-full bg-surface-container-low/90 backdrop-blur-md border border-primary/20 text-primary flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 hover:bg-primary hover:text-on-primary shadow-xl z-20 hover:scale-110 active:scale-95"
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 rounded-full bg-surface-container-low/90 backdrop-blur-md border border-primary/20 text-primary flex items-center justify-center opacity-80 md:opacity-0 md:group-hover/carousel:opacity-100 transition-all duration-300 hover:bg-primary hover:text-on-primary shadow-xl z-20 hover:scale-110 active:scale-95"
               aria-label="Anterior"
             >
               <span className="material-symbols-outlined">arrow_back_ios_new</span>
             </button>
             <button
               onClick={() => scrollByAmount('right')}
-              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 rounded-full bg-surface-container-low/90 backdrop-blur-md border border-primary/20 text-primary flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 hover:bg-primary hover:text-on-primary shadow-xl z-20 hover:scale-110 active:scale-95"
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 rounded-full bg-surface-container-low/90 backdrop-blur-md border border-primary/20 text-primary flex items-center justify-center opacity-80 md:opacity-0 md:group-hover/carousel:opacity-100 transition-all duration-300 hover:bg-primary hover:text-on-primary shadow-xl z-20 hover:scale-110 active:scale-95"
               aria-label="Siguiente"
             >
               <span className="material-symbols-outlined">arrow_forward_ios</span>
@@ -133,8 +133,9 @@ export default function GaleriaPage() {
 
           <div className="text-center mt-6 text-on-surface-variant/50 font-label-caps tracking-[0.3em] uppercase text-xs flex items-center justify-center gap-4 reveal-on-scroll delay-300">
             <span className="material-symbols-outlined text-sm hidden md:inline-block">mouse</span>
-            <span className="material-symbols-outlined text-sm md:hidden">swipe</span>
-            Usa las flechas para explorar
+            <span className="material-symbols-outlined text-sm md:hidden animate-pulse">swipe_right</span>
+            <span className="hidden md:inline">Usa las flechas para explorar</span>
+            <span className="md:hidden">Desliza para explorar</span>
           </div>
         </section>
       </main>
