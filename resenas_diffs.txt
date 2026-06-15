@@ -1,0 +1,44 @@
+Created At: 2026-06-11T23:07:56Z
+Completed At: 2026-06-11T23:07:58Z
+The following changes were made by the multi_replace_file_content tool to: c:\Users\xanty\.gemini\antigravity-ide\scratch\bartolo-cafe-web\app\page.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -88,7 +88,7 @@
+         <section className="dark-block py-16 md:py-24" id="heritage">
+           <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center">
+             <div className="max-w-3xl mx-auto">
+-              <span className="font-label-caps text-label-caps text-secondary-fixed tracking-[0.4em] uppercase mb-8 block reveal-on-scroll">Nuestra Esencia</span>
++              <span className="text-xs md:text-sm font-semibold text-secondary-fixed tracking-[0.2em] uppercase mb-8 block reveal-on-scroll">Nuestra Esencia</span>
+               <h2 className="text-2xl md:text-3xl font-light italic text-primary-fixed/90 mb-12 reveal-on-scroll delay-100">
+                 "Tu punto de encuentro, donde el buen café se hace compañía."
+               </h2>
+@@ -109,7 +109,7 @@
+           <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+             <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-24 items-end reveal-on-scroll">
+               <div className="col-span-1 md:col-span-12">
+-                <span className="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase mb-4 block">Carta Seleccionada</span>
++                <span className="text-xs md:text-sm font-semibold text-on-surface-variant tracking-[0.2em] uppercase mb-4 block">Carta Seleccionada</span>
+                 <h2 className="font-headline-md text-headline-md md:text-5xl text-primary leading-tight">
+                   Desde el primer café de la mañana hasta el sabor de cada plato.
+                 </h2>
+@@ -176,7 +176,7 @@
+ 
+         <section className="py-16 md:py-24 bg-primary text-on-primary">
+           <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center">
+-            <span className="font-label-caps text-label-caps tracking-[0.4em] uppercase opacity-60 mb-12 block reveal-on-scroll">Reseñas</span>
++            <span className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase opacity-60 mb-12 block reveal-on-scroll">Reseñas</span>
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+               <div className="reveal-on-scroll delay-100">
+                 <p className="text-xl md:text-2xl font-light italic mb-8 transition-transform duration-500 hover:scale-[1.02]">"Un refugio de paz en la ciudad. El café es simplemente excepcional."</p>
+@@ -196,7 +196,7 @@
+         <section className="bg-background overflow-hidden" id="hours">
+           <div className="grid grid-cols-1 md:grid-cols-2">
+             <div className="p-margin-mobile md:p-16 dark-block flex flex-col justify-center reveal-on-scroll">
+-              <span className="font-label-caps text-label-caps text-primary-fixed-dim tracking-widest uppercase mb-12 block">Encuentranos</span>
++              <span className="text-xs md:text-sm font-semibold text-primary-fixed-dim tracking-[0.2em] uppercase mb-12 block">Encuentranos</span>
+               <div className="space-y-16">
+                 <div className="reveal-on-scroll delay-100">
+                   <h3 className="text-2xl font-bold text-primary-fixed mb-6">Ubicación</h3>
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
+===

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { ImageWithLightbox } from "@/components/ImageWithLightbox";
 
 export default function NosotrosPage() {
   useEffect(() => {
@@ -119,7 +120,7 @@ export default function NosotrosPage() {
                     {/* Image Content */}
                     <div className={`w-full md:w-1/2 reveal-on-scroll ${isEven ? 'delay-300' : 'delay-100'}`}>
                       <div className={`bg-surface-container overflow-hidden shadow-2xl rounded-sm aspect-[4/3] group relative`}>
-                        <img
+                        <ImageWithLightbox
                           src={step.image}
                           alt={step.alt}
                           className="w-full h-full object-cover grayscale-[40%] transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105"

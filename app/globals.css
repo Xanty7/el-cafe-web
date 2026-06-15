@@ -196,3 +196,23 @@
       opacity: 1 !important;
   }
 }
+
+/* Modal Animations */
+@keyframes modalFadeIn {
+  from { opacity: 0; backdrop-filter: blur(0px); }
+  to { opacity: 1; backdrop-filter: blur(12px); }
+}
+
+@keyframes modalZoomIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-modal-fade-in {
+  animation: modalFadeIn 0.3s var(--premium-bezier) forwards;
+}
+
+.animate-modal-zoom-in {
+  animation: modalZoomIn 0.4s var(--premium-bezier) forwards;
+}
+

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { Divider } from "@/components/Divider";
+import { ImageWithLightbox } from "@/components/ImageWithLightbox";
 
 const images = [
   { src: "/interior.jpg", alt: "Interior" },
@@ -91,6 +93,16 @@ export default function GaleriaPage() {
         </section>
 
         <section className="py-16 md:py-24 overflow-hidden">
+          <div className="max-w-3xl mx-auto px-margin-mobile md:px-margin-desktop text-center mb-16 md:mb-24 reveal-on-scroll">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
+              Lorem ipsum dolor
+            </h2>
+            <Divider isLight={true} className="mb-8" />
+            <p className="font-body-lg text-lg md:text-xl text-on-surface-variant/80 italic leading-relaxed">
+              Lorem ipsum dolor sit amet consectetur adipiscing, elit orci inceptos himenaeos in odio, mus tellus consequat sem neque. Mattis magna netus mi blandit, volutpat primis quam nunc, lectus at platea. Fringilla ad habitant porttitor.
+            </p>
+          </div>
+
           <div className="relative group/carousel">
             <div
               ref={scrollContainerRef}
@@ -102,7 +114,7 @@ export default function GaleriaPage() {
                   className="flex-none w-[85vw] md:w-[60vw] lg:w-[45vw] snap-center shrink-0 reveal-on-scroll delay-100"
                 >
                   <div className="bg-surface-container overflow-hidden shadow-2xl group rounded-sm aspect-[4/5] md:aspect-video relative">
-                    <img
+                    <ImageWithLightbox
                       alt={image.alt}
                       className="w-full h-full object-cover md:grayscale transition-all duration-[2000ms] md:group-hover:grayscale-0 group-hover:scale-105 pointer-events-none"
                       src={image.src}

@@ -1,0 +1,97 @@
+Created At: 2026-06-12T21:05:04Z
+Completed At: 2026-06-12T21:05:04Z
+File Path: `file:///c:/Users/xanty/.gemini/antigravity-ide/scratch/bartolo-cafe-web/app/page.tsx`
+Total Lines: 171
+Total Bytes: 9824
+Showing lines 1 to 171
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: "use client";
+2: 
+3: import { useEffect } from "react";
+4: 
+5: export default function Home() {
+6:   useEffect(() => {
+7:     // Scroll Progress Logic
+8:     const handleScroll = () => {
+9:       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+10:       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+11:       const scrolled = (winScroll / height) * 100;
+12:       const progressEl = document.getElementById("scroll-progress");
+13:       if (progressEl) {
+14:         progressEl.style.width = scrolled + "%";
+15:       }
+16:     };
+17: 
+18:     window.addEventListener("scroll", handleScroll);
+19: 
+20:     // Intersection Observer for Staggered Reveals
+21:     const observerOptions = {
+22:       threshold: 0.1,
+23:       rootMargin: "0px 0px -50px 0px",
+24:     };
+25: 
+26:     const revealObserver = new IntersectionObserver((entries) => {
+27:       entries.forEach((entry) => {
+28:         if (entry.isIntersecting) {
+29:           entry.target.classList.add("visible");
+30:         }
+31:       });
+32:     }, observerOptions);
+33: 
+34:     document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
+35:       revealObserver.observe(el);
+36:     });
+37: 
+38:     return () => {
+39:       window.removeEventListener("scroll", handleScroll);
+40:       revealObserver.disconnect();
+41:     };
+42:   }, []);
+43: 
+44:   return (
+45:     <>
+46:       <div id="scroll-progress"></div>
+47:       <main className="min-h-screen">
+48:         {/* HERO SECTION */}
+49:         <section className="re
+<truncated 7024 bytes>
+              </div>
+134:                   <p className="font-body-md text-sm text-on-surface-variant/70">{item.desc}</p>
+135:                 </div>
+136:               ))}
+137:             </div>
+138:             
+139:             <div className="mt-12 text-center reveal-on-scroll delay-400 md:mt-24">
+140:               <a className="inline-block border border-primary text-primary px-10 py-5 font-label-caps text-label-caps uppercase hover:bg-primary hover:text-on-primary transition-all duration-500 tracking-widest hover:scale-105 active:scale-95" href="/menu">
+141:                 Ver Menú Completo
+142:               </a>
+143:             </div>
+144:           </div>
+145:         </section>
+146: 
+147:         {/* GALLERY PREVIEW */}
+148:         <section className="py-16 md:py-24" id="gallery">
+149:           <div className="grid grid-cols-1 md:grid-cols-3 h-[60vh] md:h-[80vh]">
+150:             {[
+151:               "/gallery_interior.png",
+152:               "/gallery_coffee.png",
+153:               "/gallery_pastry.png"
+154:             ].map((img, i) => (
+155:               <div key={i} className="relative group overflow-hidden bg-primary h-full">
+156:                 <img src={img} alt="Gallery" className="w-full h-full object-cover grayscale transition-all duration-[2000ms] group-hover:grayscale-0 group-hover:scale-110 opacity-80 group-hover:opacity-100" />
+157:               </div>
+158:             ))}
+159:           </div>
+160:           <div className="text-center mt-12 md:mt-24 reveal-on-scroll">
+161:             <a className="inline-block border border-primary text-primary px-10 py-5 font-label-caps text-label-caps uppercase hover:bg-primary hover:text-on-primary transition-all duration-500 tracking-widest hover:scale-105 active:scale-95" href="/galeria">
+162:               Explorar Galería
+163:             </a>
+164:           </div>
+165:         </section>
+166: 
+167:       </main>
+168:     </>
+169:   );
+170: }
+171: 
+The above content shows the entire, complete file contents of the requested file.

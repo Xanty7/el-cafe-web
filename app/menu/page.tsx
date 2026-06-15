@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { Divider } from "@/components/Divider";
 
 const menuData = [
   {
@@ -238,7 +239,7 @@ export default function MenuPage() {
                   <h2 className={`text-3xl md:text-4xl font-bold mb-6 ${textMain}`}>
                     {category.category}
                   </h2>
-                  <div className={`w-16 h-1 mx-auto rounded-full ${dividerStyle}`}></div>
+                  <Divider isLight={isLight} />
                 </div>
                 
                 <div className="grid grid-cols-1 gap-6 text-left">

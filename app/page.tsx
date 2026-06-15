@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { Divider } from "@/components/Divider";
+import { ImageWithLightbox } from "@/components/ImageWithLightbox";
 
 export default function Home() {
   const galleryScrollRef = useRef<HTMLDivElement>(null);
@@ -113,7 +115,7 @@ export default function Home() {
                 "Lorem ipsum dolor sit amet consectetur, adipiscing elit aenean dictumst."
               </h2>
               <div className="aspect-square md:aspect-video w-full mb-16 overflow-hidden reveal-on-scroll delay-200 group rounded-sm">
-                <img src="/gallery_interior.png" alt="Interior Bartolo Cafe" className="w-full h-full object-cover transition-all duration-[1500ms] group-hover:scale-105 group-hover:brightness-110" />
+                <ImageWithLightbox src="/gallery_interior.png" alt="Interior Bartolo Cafe" className="w-full h-full object-cover transition-all duration-[1500ms] group-hover:scale-105 group-hover:brightness-110" />
               </div>
               <div className="reveal-on-scroll delay-300">
                 <p className="text-on-surface-variant font-body-lg md:text-lg mb-8 opacity-90 leading-relaxed max-w-2xl mx-auto text-primary-fixed">
@@ -136,7 +138,7 @@ export default function Home() {
               <h2 className="font-headline-md text-headline-md md:text-5xl text-primary leading-tight mb-4">
                 Desde el primer café de la mañana hasta el sabor de cada plato.
               </h2>
-              <div className="w-16 h-1 bg-primary/20 mx-auto rounded-full"></div>
+              <Divider isLight={true} />
             </div>
 
             <div className="max-w-3xl mx-auto space-y-6">
@@ -171,7 +173,7 @@ export default function Home() {
               <h2 className="font-headline-md text-headline-md md:text-5xl text-primary leading-tight mb-4">
                 Galería
               </h2>
-              <div className="w-16 h-1 bg-primary/20 mx-auto rounded-full"></div>
+              <Divider isLight={true} />
             </div>
             <div className="relative group/carousel">
               <div 
@@ -184,7 +186,7 @@ export default function Home() {
                   "/desayuno.jpg"
                 ].map((img, i) => (
                   <div key={i} className="flex-none w-[85vw] h-[50vh] md:w-auto md:h-full relative group overflow-hidden bg-primary rounded-sm shadow-xl reveal-on-scroll delay-100 snap-center">
-                    <img src={img} alt="Gallery" className="w-full h-full object-cover transition-all duration-[2000ms] group-hover:scale-110 group-hover:brightness-110 opacity-90 group-hover:opacity-100" />
+                    <ImageWithLightbox src={img} alt="Gallery" className="w-full h-full object-cover transition-all duration-[2000ms] group-hover:scale-110 group-hover:brightness-110 opacity-90 group-hover:opacity-100" />
                   </div>
                 ))}
               </div>
