@@ -91,7 +91,7 @@ export default async function Home() {
                 <div className="mt-10 hidden md:block">
                   <a className="inline-flex items-center justify-center gap-3 border border-primary-fixed text-primary-fixed px-10 py-5 font-label-caps text-label-caps uppercase hover:bg-primary-fixed hover:text-primary transition-all duration-500 tracking-widest hover:scale-105 active:scale-95 group/btn" href="/nosotros">
                     Leer Más
-                    <span className="material-symbols-outlined text-base transition-transform group-hover/btn:-translate-y-1 group-hover/btn:translate-x-1">arrow_outward</span>
+                    <span className="material-symbols-outlined text-base transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
                   </a>
                 </div>
               </div>
@@ -107,7 +107,7 @@ export default async function Home() {
                 <div className="md:hidden flex justify-center reveal-on-scroll delay-300">
                   <a className="inline-flex items-center justify-center gap-3 border border-primary-fixed text-primary-fixed px-10 py-5 font-label-caps text-label-caps uppercase hover:bg-primary-fixed hover:text-primary transition-all duration-500 tracking-widest hover:scale-105 active:scale-95 group/btn" href="/nosotros">
                     Leer Más
-                    <span className="material-symbols-outlined text-base transition-transform group-hover/btn:-translate-y-1 group-hover/btn:translate-x-1">arrow_outward</span>
+                    <span className="material-symbols-outlined text-base transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
                   </a>
                 </div>
               </div>
