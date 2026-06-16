@@ -1,130 +1,115 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import { Divider } from "@/components/Divider";
+import { ScrollObserver } from "@/components/ScrollObserver";
+import { GalleryCarousel } from "@/components/GalleryCarousel";
+import { getMenuData } from "@/lib/sheets";
 import { ImageWithLightbox } from "@/components/ImageWithLightbox";
 
-export default function Home() {
-  const galleryScrollRef = useRef<HTMLDivElement>(null);
+export const revalidate = 60; // Revalidate at most every minute
 
-  const scrollGallery = (direction: 'left' | 'right') => {
-    if (!galleryScrollRef.current) return;
-    const container = galleryScrollRef.current;
-    const scrollAmount = direction === 'left' ? -container.clientWidth / 1.5 : container.clientWidth / 1.5;
-    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  };
-  useEffect(() => {
-    // Scroll Progress Logic
-    const handleScroll = () => {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      const progressEl = document.getElementById("scroll-progress");
-      if (progressEl) {
-        progressEl.style.width = scrolled + "%";
-      }
+export default async function Home() {
+  const menuData = await getMenuData();
 
-      // Parallax effect for Hero Image
-      const heroParallax = document.getElementById("hero-parallax-img");
-      if (heroParallax) {
-        heroParallax.style.transform = `translateY(${winScroll * 0.4}px)`;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    // Intersection Observer for Staggered Reveals
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
-    };
-
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
-      revealObserver.observe(el);
+  // Pick 3 items to feature on the homepage.
+  // We can pick specific ones or just the first few.
+  const featuredItems = [];
+  if (menuData.length > 0) {
+    const specialCoffees = menuData.find(cat => {
+      const normalized = cat.category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      return normalized.includes("cafes especiales");
     });
 
-    // Wheel Event to force scroll past Hero
-    let isScrolling = false;
-    const handleWheel = (e: WheelEvent) => {
-      // If at the very top and scrolling down
-      if (window.scrollY === 0 && e.deltaY > 0 && !isScrolling) {
-        e.preventDefault();
-        isScrolling = true;
-        const nextSection = document.getElementById("heritage");
-        if (nextSection) {
-          const y = nextSection.getBoundingClientRect().top + window.scrollY - 80; // 80px navbar offset
-          window.scrollTo({ top: y, behavior: "smooth" });
+    if (specialCoffees && specialCoffees.items.length > 0) {
+      // Tomamos hasta 4 productos de la categoría de cafés especiales
+      featuredItems.push(...specialCoffees.items.slice(0, 4));
+    }
 
-          setTimeout(() => {
-            isScrolling = false;
-          }, 1000);
-        }
-      }
-    };
-    window.addEventListener("wheel", handleWheel, { passive: false });
+    // Fallback if we couldn't find 4 items in the coffee category
+    if (featuredItems.length < 4) {
+      const allItems = menuData.flatMap(cat => cat.items);
+      featuredItems.push(...allItems.slice(0, 4 - featuredItems.length));
+    }
+  }
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      revealObserver.disconnect();
-      window.removeEventListener("wheel", handleWheel);
-    };
-  }, []);
+  const galleryImages = [
+    "/latte.jpg",
+    "/atmosfera.jpg",
+    "/desayuno.jpg"
+  ];
 
   return (
     <>
+      <ScrollObserver />
       <div id="scroll-progress"></div>
       <main className="min-h-screen">
         {/* HERO SECTION */}
-        <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-24">
+        <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0 overflow-hidden">
             <div id="hero-parallax-img" className="absolute inset-x-0 -top-[15%] h-[130%]">
-              <img alt="Artisanal Coffee" className="w-full h-full object-cover hero-breath" src="/hero_portada.jpg" />
+              <img alt="Coffee Background" className="w-full h-full object-cover" src="/hero_portada.jpg" />
             </div>
-            <div className="absolute inset-0 bg-primary/40 mix-blend-multiply"></div>
+            <div className="absolute inset-0 bg-black/40"></div>
           </div>
-          <div className="relative z-10 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center reveal-on-scroll">
-            <span className="font-label-caps text-label-caps text-primary-fixed tracking-[0.4em] uppercase mb-12 block">Est. 2016</span>
-            <h1 className="font-display-lg text-5xl md:text-7xl text-primary-fixed mb-6 leading-none tracking-widest uppercase">
-              BARTOLO <span className="italic font-normal lowercase text-primary-fixed-dim">café</span>
-            </h1>
-            <p className="text-xl md:text-3xl text-primary-fixed/90 italic mb-16 tracking-tight">
-              Lorem ipsum dolor sit, amet.
-            </p>
-          </div>
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-60 reveal-on-scroll delay-400">
-            <span className="font-label-caps text-[10px] text-primary-fixed uppercase tracking-widest">deslizá hacia abajo</span>
-            <span className="material-symbols-outlined text-primary-fixed text-sm animate-bounce">arrow_downward</span>
 
+          <div className="relative z-10 flex flex-col justify-between items-center h-full w-full max-w-container-max px-margin-mobile md:px-margin-desktop pt-32 pb-16">
+            <div className="flex-1 flex items-center">
+              <div className="text-center reveal-on-scroll">
+                <span className="text-sm md:text-base font-semibold text-white tracking-[0.3em] uppercase mb-4 md:mb-6 block drop-shadow-lg">EST. 2016</span>
+                <h1 className="font-display-lg text-5xl md:text-7xl text-white leading-none drop-shadow-2xl tracking-widest uppercase inline-block">
+                  BARTOLO <span className="text-4xl md:text-6xl italic font-display-md text-white/90 lowercase tracking-normal">café</span>
+                </h1>
+                <p className="text-white/80 mt-6 md:mt-8 font-body-lg text-xl md:text-2xl italic drop-shadow-md max-w-2xl mx-auto">
+                  Lorem ipsum dolor sit, amet.
+                </p>
+              </div>
+            </div>
+            <a href="#heritage" className="text-primary-fixed font-label-caps text-xs tracking-widest uppercase flex flex-col items-center gap-2 hover:opacity-80 transition-opacity animate-bounce-slow drop-shadow-md">
+              Deslizá hacia abajo
+              <span className="material-symbols-outlined font-light">keyboard_arrow_down</span>
+            </a>
           </div>
         </section>
 
-        {/* NUESTRA ESENCIA */}
-        <section className="dark-block py-16 md:py-24" id="heritage">
-          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center">
-            <div className="max-w-3xl mx-auto">
-              <span className="text-xs md:text-sm font-semibold text-secondary-fixed tracking-[0.2em] uppercase mb-8 block reveal-on-scroll">Nuestra Esencia</span>
-              <h2 className="text-2xl md:text-3xl font-light italic text-primary-fixed/90 mb-12 reveal-on-scroll delay-100">
-                "Lorem ipsum dolor sit amet consectetur, adipiscing elit aenean dictumst."
-              </h2>
-              <div className="aspect-square md:aspect-video w-full mb-16 overflow-hidden reveal-on-scroll delay-200 group rounded-sm">
-                <ImageWithLightbox src="/gallery_interior.png" alt="Interior Bartolo Cafe" className="w-full h-full object-cover transition-all duration-[1500ms] group-hover:scale-105 group-hover:brightness-110" />
+        {/* HERITAGE SECTION */}
+        <section className="py-24 md:py-32 bg-primary-container text-primary-fixed relative overflow-hidden" id="heritage">
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary-fixed/20 to-transparent"></div>
+          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
+              <div className="reveal-on-scroll text-center md:text-left">
+                <span className="text-xs md:text-sm font-semibold text-primary-fixed/80 tracking-[0.2em] uppercase mb-6 block">Nuestra esencia</span>
+                <h2 className="font-headline-md text-headline-md md:text-5xl text-primary-fixed leading-tight mb-8">
+                  Desde el primer sorbo.
+                </h2>
+                <div className="space-y-6 text-primary-fixed/90 font-body-lg">
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipiscing elit potenti, parturient pretium vivamus faucibus interdum tempus cursus, facilisi ullamcorper condimentum auctor arcu pulvinar bibendum.
+                  </p>
+                  <p>
+                    Eleifend commodo at molestie inceptos congue hac fringilla accumsan dignissim velit, facilisis ut sociis.
+                  </p>
+                </div>
+                {/* Button for desktop only */}
+                <div className="mt-10 hidden md:block">
+                  <a className="inline-flex items-center justify-center gap-3 border border-primary-fixed text-primary-fixed px-10 py-5 font-label-caps text-label-caps uppercase hover:bg-primary-fixed hover:text-primary transition-all duration-500 tracking-widest hover:scale-105 active:scale-95 group/btn" href="/nosotros">
+                    Leer Más
+                    <span className="material-symbols-outlined text-base transition-transform group-hover/btn:-translate-y-1 group-hover/btn:translate-x-1">arrow_outward</span>
+                  </a>
+                </div>
               </div>
-              <div className="reveal-on-scroll delay-300">
-                <p className="text-on-surface-variant font-body-lg md:text-lg mb-8 opacity-90 leading-relaxed max-w-2xl mx-auto text-primary-fixed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis nunc ut feugiat vehicula. Donec mattis vehicula sollicitudin. Cras luctus condimentum lacus et porttitor. Aliquam ac blandit sapien.
-                </p>
-                <a href="/nosotros" className="inline-flex items-center gap-3 mt-4 border border-primary-fixed text-primary-fixed px-10 py-5 font-label-caps text-label-caps uppercase hover:bg-primary-fixed hover:text-primary transition-all duration-500 tracking-widest hover:scale-105 active:scale-95 group/btn">
-                  Leer más
-                  <span className="material-symbols-outlined text-base transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
-                </a>
+              <div className="flex flex-col gap-10">
+                <div className="relative h-[40vh] md:h-[80vh] w-full bg-surface-container-high overflow-hidden rounded-sm shadow-2xl reveal-on-scroll delay-200">
+                  <ImageWithLightbox
+                    alt="Interior Bartolo"
+                    className="w-full h-full object-cover transition-transform duration-[3000ms] hover:scale-105 opacity-90"
+                    src="/gallery_interior.png"
+                  />
+                </div>
+                {/* Button for mobile only */}
+                <div className="md:hidden flex justify-center reveal-on-scroll delay-300">
+                  <a className="inline-flex items-center justify-center gap-3 border border-primary-fixed text-primary-fixed px-10 py-5 font-label-caps text-label-caps uppercase hover:bg-primary-fixed hover:text-primary transition-all duration-500 tracking-widest hover:scale-105 active:scale-95 group/btn" href="/nosotros">
+                    Leer Más
+                    <span className="material-symbols-outlined text-base transition-transform group-hover/btn:-translate-y-1 group-hover/btn:translate-x-1">arrow_outward</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -142,17 +127,20 @@ export default function Home() {
             </div>
 
             <div className="max-w-3xl mx-auto space-y-6">
-              {[
-                { name: "Café Bartolo", desc: "Café, baileys, crema y canela", price: "$7,500.00" },
-                { name: "Bartoccino", desc: "Café, leche, dulce de leche y crema chantilly", price: "$6,500.00" },
-                { name: "Avocado Toast", desc: "Pan de masa madre, palta pisada, huevo poché y semillas", price: "$6,000.00" },
-              ].map((item, i) => (
+              {featuredItems.map((item, i) => (
                 <div key={i} className="group border-b border-primary/20 pb-4 hover:border-primary transition-all duration-500 reveal-on-scroll">
                   <div className="flex justify-between items-end mb-2 gap-4">
-                    <h3 className="text-xl md:text-2xl font-bold text-primary group-hover:italic group-hover:translate-x-2 transition-all duration-500 flex-1">{item.name}</h3>
+                    <h3 className="text-xl md:text-2xl font-bold text-primary group-hover:italic group-hover:translate-x-2 transition-all duration-500 flex-1">
+                      {item.name}
+                      {item.portion && (
+                        <span className="block md:inline md:ml-3 text-sm md:text-base font-normal italic opacity-80 text-on-surface-variant/70">
+                          ({item.portion})
+                        </span>
+                      )}
+                    </h3>
                     <span className="font-body-md text-primary font-bold transition-transform duration-500 group-hover:-translate-x-2 whitespace-nowrap">{item.price}</span>
                   </div>
-                  <p className="font-body-md text-sm text-on-surface-variant/70">{item.desc}</p>
+                  {item.description && <p className="font-body-md text-sm text-on-surface-variant/70">{item.description}</p>}
                 </div>
               ))}
             </div>
@@ -166,7 +154,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* GALLERY PREVIEW */}
+        {/* GALLERY SECTION */}
         <section className="py-16 md:py-24" id="gallery">
           <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <div className="text-center mb-12 md:mb-16 reveal-on-scroll">
@@ -175,39 +163,9 @@ export default function Home() {
               </h2>
               <Divider isLight={true} />
             </div>
-            <div className="relative group/carousel">
-              <div 
-                ref={galleryScrollRef}
-                className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-4 md:grid md:grid-cols-3 md:h-[50vh] pb-8 md:pb-0"
-              >
-                {[
-                  "/latte.jpg",
-                  "/atmosfera.jpg",
-                  "/desayuno.jpg"
-                ].map((img, i) => (
-                  <div key={i} className="flex-none w-[85vw] h-[50vh] md:w-auto md:h-full relative group overflow-hidden bg-primary rounded-sm shadow-xl reveal-on-scroll delay-100 snap-center">
-                    <ImageWithLightbox src={img} alt="Gallery" className="w-full h-full object-cover transition-all duration-[2000ms] group-hover:scale-110 group-hover:brightness-110 opacity-90 group-hover:opacity-100" />
-                  </div>
-                ))}
-              </div>
-              
-              <button
-                onClick={() => scrollGallery('left')}
-                className="absolute left-2 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-surface-container-low/90 backdrop-blur-md border border-primary/20 text-primary flex items-center justify-center opacity-80 md:hidden shadow-xl z-20 active:scale-95"
-                aria-label="Anterior"
-              >
-                <span className="material-symbols-outlined">arrow_back_ios_new</span>
-              </button>
-              
-              <button
-                onClick={() => scrollGallery('right')}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-surface-container-low/90 backdrop-blur-md border border-primary/20 text-primary flex items-center justify-center opacity-80 md:hidden shadow-xl z-20 active:scale-95"
-                aria-label="Siguiente"
-              >
-                <span className="material-symbols-outlined">arrow_forward_ios</span>
-              </button>
-            </div>
-            
+
+            <GalleryCarousel images={galleryImages} />
+
             <div className="text-center mt-6 text-on-surface-variant/50 font-label-caps tracking-[0.3em] uppercase text-xs flex items-center justify-center gap-4 md:hidden reveal-on-scroll delay-300">
               <span className="material-symbols-outlined text-sm animate-pulse">swipe_right</span>
               <span>Desliza para ver más</span>
@@ -286,18 +244,17 @@ export default function Home() {
               </div>
             </div>
             <div className="relative h-[400px] md:h-auto overflow-hidden">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6644898814097!2d-63.756241525148596!3d-35.66063701408118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95c37d5ba4a02571%3A0x24e13f0cb6cfffeb!2sBartolo!5e0!3m2!1ses-419!2sar!4v1781390591113!5m2!1ses-419!2sar" 
-                className="absolute inset-0 w-full h-full" 
-                style={{ border: 0 }} 
-                allowFullScreen 
-                loading="lazy" 
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6644898814097!2d-63.756241525148596!3d-35.66063701408118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95c37d5ba4a02571%3A0x24e13f0cb6cfffeb!2sBartolo!5e0!3m2!1ses-419!2sar!4v1781390591113!5m2!1ses-419!2sar"
+                className="absolute inset-0 w-full h-full"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
           </div>
         </section>
-
       </main>
     </>
   );

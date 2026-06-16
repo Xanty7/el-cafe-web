@@ -9,7 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-24">
           <div className="col-span-1 md:col-span-5 reveal-on-scroll">
             <span className="font-headline-md text-primary block mb-4 uppercase tracking-widest">BARTOLO café</span>
-            <p className="font-body-lg text-on-surface-variant italic opacity-80">El arte de la pausa</p>
+            <p className="font-body-lg text-on-surface-variant italic opacity-80">Lorem ipsum dolor sit, amet.</p>
           </div>
           <div className="col-span-1 md:col-span-3 reveal-on-scroll delay-100">
             <h4 className="font-label-caps text-label-caps text-primary uppercase tracking-widest mb-8">Navegación</h4>
