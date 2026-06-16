@@ -129,7 +129,7 @@ export default async function Home() {
             <div className="max-w-3xl mx-auto space-y-6">
               {featuredItems.map((item, i) => (
                 <div key={i} className="group border-b border-primary/20 pb-4 hover:border-primary transition-all duration-500 reveal-on-scroll">
-                  <div className="flex justify-between items-end mb-2 gap-4">
+                  <div className="flex justify-between items-start mb-2 gap-4">
                     <h3 className="text-xl md:text-2xl font-bold text-primary group-hover:italic group-hover:translate-x-2 transition-all duration-500 flex-1">
                       {item.name}
                       {item.portion && (

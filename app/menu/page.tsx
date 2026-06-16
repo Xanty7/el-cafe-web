@@ -55,7 +55,7 @@ export default async function MenuPage() {
                       key={itemIndex} 
                       className={`group border-b pb-4 transition-all duration-500 reveal-on-scroll delay-100 ${borderStyle}`}
                     >
-                      <div className="flex justify-between items-end mb-2 gap-4">
+                      <div className="flex justify-between items-start mb-2 gap-4">
                         <h3 className={`text-xl md:text-2xl font-bold group-hover:italic group-hover:translate-x-2 transition-all duration-500 flex-1 ${textMain}`}>
                           {item.name}
                           {item.portion && (
