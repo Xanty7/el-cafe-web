@@ -14,152 +14,36 @@ export interface MenuCategory {
 
 export const FALLBACK_MENU: MenuCategory[] = [
   {
-    category: "Cafetería y Cafés Especiales",
+    category: "Cafetería Clásica",
     items: [
-      { name: "Café irlandés", description: "Café, whisky y crema", price: "$6,000.00" },
-      { name: "Café cubano", description: "Café, ron y crema", price: "$6,000.00" },
-      { name: "Latte Saborizado", description: "Café latte saborizado a elección (Avellanas, Vainilla, Caramel, Chocolate, Pistacho)", price: "$6,000.00" },
-      { name: "Cappuccino", description: "", price: "$6,500.00" },
-      { name: "Bartoccino", description: "Café, leche, dulce de leche y crema chantilly", price: "$6,500.00" },
-      { name: "Submarino", description: "", price: "$6,500.00" },
-      { name: "Capuccino Marroc", description: "Bombón Marroc, crema chantilly, canela y salsa de chocolate", price: "$6,500.00" },
-      { name: "Café bombón", description: "Café, espuma de leche, salsa de chocolate y leche condensada", price: "$6,500.00" },
-      { name: "Café Bartolo", description: "Café, baileys, crema y canela", price: "$7,500.00" },
+      { name: "Espresso", description: "Café negro corto e intenso.", price: "$2.20", portion: "Pocillo (60 ml)" },
+      { name: "Cappuccino Italiano", description: "Café con leche y mucha espuma.", price: "$3.20", portion: "Taza Mediana (250 ml)" },
+      { name: "Latte Vainilla", description: "Café con leche y vainilla.", price: "$3.50", portion: "Taza Grande (360 ml)" },
+      { name: "Flat White", description: "Doble shot con leche fina.", price: "$3.40", portion: "Taza Mediana (200 ml)" },
+      { name: "Caramel Macchiato", description: "Café con leche y caramelo.", price: "$3.80", portion: "Taza Grande (360 ml)" },
+      { name: "Cold Brew Frapé", description: "Café frío licuado con hielo.", price: "$4.00", portion: "Vaso Alto (400 ml)" },
     ]
   },
   {
-    category: "Dulces, Pastelería y Panadería",
+    category: "Pastelería & Panadería",
     items: [
-      { name: "Medialunas", description: "(por unidad)", price: "$2,000.00" },
-      { name: "Cookies", description: "(por unidad)", price: "$2,500.00" },
-      { name: "Tostadas", description: "(plato)", price: "$2,500.00" },
-      { name: "Dips / Agregados", description: "Dulce de leche, Manteca, Mermelada o Queso untable", price: "$2,500.00 c/u" },
-      { name: "Alfajor de maicena", description: "", price: "$3,000.00" },
-      { name: "Alfajor sin T.A.C.C", description: "Dulce de leche y chocolate (negro o blanco)", price: "$3,000.00" },
-      { name: "Factura", description: "Membrillo o pastelera", price: "$3,000.00" },
-      { name: "Croissant", description: "(por unidad)", price: "$4,500.00" },
-      { name: "Cupcakes", description: "(por unidad)", price: "$4,500.00" },
-      { name: "Donas", description: "(por unidad)", price: "$4,500.00" },
-      { name: "Budín", description: "(porción): Limón o Hamburgués (chocolate y nuez)", price: "$5,000.00" },
-      { name: "Cuadradito de torta", description: "(porción): Limón, Coco, Brownie o Pastafrola", price: "$6,000.00" },
-      { name: "Tabla Dulce", description: "Frutillas, bananas, waffles, budín de limón, galletitas, mix de golosinas, dips de dulce de leche y crema", price: "$12,000.00" },
+      { name: "Croissant de Almendras", description: "Hojaldre relleno de almendras.", price: "$2.80", portion: "1 Unidad" },
+      { name: "Cinnamon Roll", description: "Rollo de canela con glaseado.", price: "$2.60", portion: "1 Unidad" },
+      { name: "Porción de Carrot Cake", description: "Torta de zanahoria y nuez.", price: "$3.20", portion: "1 Porción (150 g)" },
+      { name: "Cookie Chocochips", description: "Galleta clásica con chocolate.", price: "$1.80", portion: "1 Unidad Grande" },
+      { name: "Scons de Queso", description: "Pancitos horneados de queso.", price: "$2.00", portion: "2 Unidades" },
+      { name: "Brownie con Nueces", description: "Cuadrado húmedo de chocolate.", price: "$2.40", portion: "1 Porción" },
     ]
   },
   {
-    category: "Tortas (Porción)",
+    category: "Especialidades Saladas",
     items: [
-      { name: "Brownie con merengue y dulce de leche", description: "", price: "$8,500.00" },
-      { name: "Chocotorta", description: "", price: "$8,500.00" },
-      { name: "Lemon Pie", description: "", price: "$8,500.00" },
-      { name: "Rogel", description: "", price: "$8,500.00" },
-      { name: "Tiramisú", description: "", price: "$8,500.00" },
-      { name: "Torta bombón", description: "", price: "$8,500.00" },
-      { name: "Cheesecake de frutos rojos", description: "", price: "$10,000.00" },
-      { name: "Cheesecake Oreo", description: "", price: "$10,000.00" },
-      { name: "Torta de frutilla", description: "Bizcochuelo de chocolate, mousse de frutilla y frutillas con crema", price: "$10,000.00" },
-      { name: "Torta Moka", description: "Bizcochuelo de chocolate, mousse de dulce de leche y crema moka", price: "$10,000.00" },
-    ]
-  },
-  {
-    category: "Postres y Waffles",
-    items: [
-      { name: "Copa Bartolina", description: "Chocolinas, leche condensada, frutillas y crema chantilly", price: "$7,500.00" },
-      { name: "Super copa", description: "Chocolinas molidas, crema de café, dulce de leche, chantilly y chocolate", price: "$7,500.00" },
-      { name: "Waffle Chuli", description: "Dulce de leche y frutillas", price: "$9,000.00" },
-      { name: "Waffle Nut", description: "Nutella, frutillas y crema chantilly", price: "$9,000.00" },
-      { name: "Waffle Warhol", description: "Banana y dulce de leche", price: "$9,000.00" },
-      { name: "Waffle Dubai", description: "Helado de chocolate, chantilly, dulce de leche y salsa de pistacho", price: "$12,000.00" },
-      { name: "Waffle MaxPower", description: "Helado, sirope de chocolate y dulce de leche, crema, chispas y rocklets", price: "$12,000.00" },
-    ]
-  },
-  {
-    category: "Frappés",
-    items: [
-      { name: "Caramel Macchiato", description: "Café, leche, crema y sirope de caramelo", price: "$7,000.00" },
-      { name: "Moka", description: "Café, chocolatada, crema y sirope de chocolate", price: "$7,000.00" },
-      { name: "Bartolo Frappé", description: "Café, helado de americana, chips de chocolate, crema y sirope", price: "$9,000.00" },
-      { name: "Nutella Frappé", description: "Café, helado de americana, nutella, chantilly y chocolate rallado", price: "$9,000.00" },
-      { name: "Oreo Frappe", description: "Café, helado de americana, crema, oreos y sirope de chocolate", price: "$9,000.00" },
-    ]
-  },
-  {
-    category: "Entradas, Minutas y Salados",
-    items: [
-      { name: "Croissant JyQ", description: "Con jamón y queso", price: "$9,000.00" },
-      { name: "Avocado Toast", description: "2 tostadas de pan integral con palta y huevo duro", price: "$9,000.00" },
-      { name: "The Wings", description: "Alitas de pollo crocante rebozadas con salsa barbacoa", price: "$11,500.00" },
-      { name: "Tostados de Jamón y Queso", description: "", price: "$12,000.00" },
-      { name: "Papas fritas", description: "Porción simple bastón", price: "$12,000.00" },
-      { name: "Nuggets de pollo", description: "Con ketchup", price: "$13,000.00" },
-      { name: "Bruschettas", description: "(6 unidades surtidas de pan tostado con oliva)", price: "$14,000.00" },
-      { name: "Fritas 4k", description: "Bañadas en salsa de 4 quesos", price: "$16,000.00" },
-      { name: "Papas al verdeo", description: "Crema, cebolla de verdeo y tiritas de jamón cocido", price: "$16,000.00" },
-      { name: "Papas Bartolo", description: "Rústicas con queso cheddar y panceta", price: "$16,000.00" },
-      { name: "Papas del roque", description: "Rústicas con pollo y queso azul", price: "$16,000.00" },
-      { name: "Papas Hendrix", description: "Bastón con rebozaditos de pollo y salsa", price: "$16,000.00" },
-      { name: "Red Hot Chilli Papas", description: "Bastón con salsa picante y verdeo", price: "$16,000.00" },
-      { name: "Rabas", description: "", price: "$18,000.00" },
-      { name: "Tina Turner", description: "Tabla con rabas, nuggets, milanesa, alitas de pollo y papas con queso", price: "$28,000.00" },
-    ]
-  },
-  {
-    category: "Platos Principales",
-    items: [
-      { name: "Huevos revueltos (A.K.A Yesterday)", description: "Con muzzarella y jamón cocido", price: "$12,000.00" },
-      { name: "Costeleta con ensalada", description: "Lechuga, tomate y queso", price: "$20,000.00" },
-      { name: "Bondiola de cerdo", description: "A la mostaza", price: "$21,000.00" },
-      { name: "Matambrito a la pizza", description: "De cerdo, con papas fritas", price: "$21,000.00" },
-      { name: "Mila Blur", description: "Con queso y cebolla. Sale con fritas", price: "$23,000.00" },
-      { name: "Mila Morrissey", description: "Con queso sardo, roque, tybo y cheddar. Sale con fritas", price: "$23,000.00" },
-      { name: "Mila Oasis", description: "A la napolitana. Sale con fritas", price: "$23,000.00" },
-      { name: "Mila Ramones", description: "Con cheddar y huevo frito. Sale con fritas", price: "$23,000.00" },
-      { name: "Picada Bartolo", description: "Variedad de fiambres, quesos (gruyere, azul), olivas y pickles", price: "$29,000.00" },
-    ]
-  },
-  {
-    category: "Ensaladas",
-    items: [
-      { name: "Capresse", description: "Albahaca, tomate cherry, mozzarella y aceitunas negras", price: "$11,000.00" },
-      { name: "César", description: "Lechuga, pollo, salsa césar, queso y croutons", price: "$11,000.00" },
-      { name: "Green", description: "Mix de hojas verdes, queso azul, tomate cherry y nuez", price: "$11,000.00" },
-      { name: "Bartolo", description: "Lechuga, tomate cherry, huevo, panceta y aceitunas negras", price: "$13,500.00" },
-      { name: "Rocanrol", description: "Lechuga, tomate cherry, pollo, cebolla y aceitunas negras", price: "$13,500.00" },
-    ]
-  },
-  {
-    category: "Pizzas",
-    items: [
-      { name: "Precio general", description: "Americana, Anchoas, Calabresa, Caprese, Criolla, Cuatro quesos, Especial, Fugazzetta, Hawaiana, Palmitos, Pancetas BBQ, Picante, Pollo, Roquefort, Rucucú", price: "$26,000.00" },
-      { name: "Pizza Cochina", description: "Mozzarella, cheddar, panceta, huevo frito y papas fritas", price: "$29,000.00" },
-    ]
-  },
-  {
-    category: "Sándwiches Gourmet y Hamburguesas",
-    items: [
-      { name: "Crudo y Rucu", description: "Rúcula, jamón crudo, queso y cherry con oliva", price: "$13,500.00" },
-      { name: "Vegetariano POP", description: "Lechuga, tomate, palta y huevo duro", price: "$13,500.00" },
-      { name: "Costanero", description: "Bondiola de cerdo, jamón, queso y huevo frito", price: "$16,000.00" },
-      { name: "Porky", description: "Bondiola de cerdo, cebolla caramelizada, mozza y lechuga", price: "$16,000.00" },
-      { name: "Hamburguesas", description: "(Cheessy, Bono, Iuesei, Jimi, Manchester, Randy, Veggie)", price: "$18,000.00 c/u" },
-      { name: "Lomos / Pollo", description: "(Oliver, Pampa, Putanezco, Pollo Bartolo)", price: "$22,000.00 c/u" },
-    ]
-  },
-  {
-    category: "Cervezas",
-    items: [
-      { name: "Andes, Imperial, Imperial Stout, Sol", description: "", price: "$6,000.00" },
-      { name: "Corona, Grolsch, Miller, Patagonia, Stella Artois, Stella Noir", description: "", price: "$7,000.00" },
-      { name: "Corona 750ml, Patagonia 750ml", description: "", price: "$11,000.00" },
-    ]
-  },
-  {
-    category: "Tragos y Coctelería",
-    items: [
-      { name: "Gin / Tragos Nacionales", description: "Gin Tonic, Gin Pink, Ginger Ale Nac., Cuba Libre, Daikiri, Fernet, Gancia, Campari", price: "$7,000.00 / $9,000.00" },
-      { name: "Ohlalá", description: "Vino blanco, sprite, vodka de frambuesa, arándanos y frutilla", price: "$7,500.00" },
-      { name: "Vodka + Speed / Jägermeister + Red Bull", description: "", price: "$9,500.00" },
-      { name: "Valenciano", description: "Campari, helado de maracuyá y jugo de naranja", price: "$10,000.00" },
-      { name: "Premium", description: "Absolut + Red Bull, Baileys Frozen, Gin Tonic Sin Alcohol", price: "$11,000.00" },
+      { name: "Tostado en Masa Madre", description: "Sándwich de jamón y queso.", price: "$4.50", portion: "1 Unidad (Grande)" },
+      { name: "Avocado Toast", description: "Tostadas con palta y huevo.", price: "$4.80", portion: "1 Porción (2 tostadas)" },
+      { name: "Bagel de Salmón", description: "Pan bagel, salmón y queso crema.", price: "$6.50", portion: "1 Unidad" },
+      { name: "Croissant Relleno", description: "Hojaldre con queso brie y rúcula.", price: "$3.60", portion: "1 Unidad" },
+      { name: "Tartine de Hongos", description: "Pan de campo con champiñones.", price: "$4.60", portion: "1 Porción" },
+      { name: "Wrap de Pollo y Bacon", description: "Tortilla con pollo y panceta.", price: "$4.90", portion: "1 Unidad" },
     ]
   }
 ];

@@ -15,11 +15,11 @@ export default async function Home() {
   if (menuData.length > 0) {
     const specialCoffees = menuData.find(cat => {
       const normalized = cat.category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      return normalized.includes("cafes especiales");
+      return normalized.includes("cafeteria") || normalized.includes("cafe") || normalized.includes("coffee");
     });
 
     if (specialCoffees && specialCoffees.items.length > 0) {
-      // Tomamos hasta 4 productos de la categoría de cafés especiales
+      // Tomamos hasta 4 productos de la categoría de cafés
       featuredItems.push(...specialCoffees.items.slice(0, 4));
     }
 
@@ -53,9 +53,9 @@ export default async function Home() {
           <div className="relative z-10 flex flex-col justify-between items-center h-full w-full max-w-container-max px-margin-mobile md:px-margin-desktop pt-32 pb-16">
             <div className="flex-1 flex items-center">
               <div className="text-center reveal-on-scroll">
-                <span className="text-sm md:text-base font-semibold text-white tracking-[0.3em] uppercase mb-4 md:mb-6 block drop-shadow-lg">EST. 2016</span>
+                <span className="text-sm md:text-base font-semibold text-white tracking-[0.3em] uppercase mb-4 md:mb-6 block drop-shadow-lg">EST. 2026</span>
                 <h1 className="font-display-lg text-5xl md:text-7xl text-white leading-none drop-shadow-2xl tracking-widest uppercase inline-block">
-                  BARTOLO <span className="text-4xl md:text-6xl italic font-display-md text-white/90 lowercase tracking-normal">café</span>
+                  EL CAFÉ
                 </h1>
                 <p className="text-white/80 mt-6 md:mt-8 font-body-lg text-xl md:text-2xl italic drop-shadow-md max-w-2xl mx-auto">
                   Lorem ipsum dolor sit, amet.
@@ -98,7 +98,7 @@ export default async function Home() {
               <div className="flex flex-col gap-10">
                 <div className="relative h-[40vh] md:h-[80vh] w-full bg-surface-container-high overflow-hidden rounded-sm shadow-2xl reveal-on-scroll delay-200">
                   <ImageWithLightbox
-                    alt="Interior Bartolo"
+                    alt="Interior Café"
                     className="w-full h-full object-cover transition-transform duration-[3000ms] hover:scale-105 opacity-90"
                     src="/gallery_interior.png"
                   />
@@ -121,7 +121,7 @@ export default async function Home() {
             <div className="text-center mb-16 reveal-on-scroll">
               <span className="text-xs md:text-sm font-semibold text-on-surface-variant tracking-[0.2em] uppercase mb-4 block">Carta Seleccionada</span>
               <h2 className="font-headline-md text-headline-md md:text-5xl text-primary leading-tight mb-4">
-                Desde el primer café de la mañana hasta el sabor de cada plato.
+                Donde cada grano cuenta una historia de aroma y sabor.
               </h2>
               <Divider isLight={true} />
             </div>
@@ -212,14 +212,14 @@ export default async function Home() {
                     <span className="material-symbols-outlined text-primary-fixed-dim">location_on</span>
                     Ubicación
                   </h3>
-                  <p className="font-body-lg text-primary-fixed/70 md:pl-9">Calle 18 700-800<br />Gral. Pico, La Pampa</p>
+                  <p className="font-body-lg text-primary-fixed/70 md:pl-9">Calle 17 500<br />Gral. Pico, La Pampa</p>
                 </div>
                 <div className="reveal-on-scroll delay-200">
                   <h3 className="text-2xl font-bold text-primary-fixed mb-6 flex items-center justify-center md:justify-start gap-3">
                     <span className="material-symbols-outlined text-primary-fixed-dim">phone_iphone</span>
                     Contacto
                   </h3>
-                  <p className="font-body-lg text-primary-fixed/70 md:pl-9">+54 2302 342711</p>
+                  <p className="font-body-lg text-primary-fixed/70 md:pl-9">+54 2302 554433</p>
                 </div>
                 <div className="reveal-on-scroll delay-300">
                   <h3 className="text-2xl font-bold text-primary-fixed mb-6 flex items-center justify-center md:justify-start gap-3">
@@ -245,7 +245,7 @@ export default async function Home() {
             </div>
             <div className="relative h-[400px] md:h-auto overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6644898814097!2d-63.756241525148596!3d-35.66063701408118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95c37d5ba4a02571%3A0x24e13f0cb6cfffeb!2sBartolo!5e0!3m2!1ses-419!2sar!4v1781390591113!5m2!1ses-419!2sar"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d102948.33744654922!2d-63.834015!3d-35.65664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95c37ce2b17f5413%3A0x6b2b73315a67a0a6!2sGeneral%20Pico%2C%20La%20Pampa!5e0!3m2!1sen!2sar!4v1718000000000!5m2!1sen!2sar"
                 className="absolute inset-0 w-full h-full"
                 style={{ border: 0 }}
                 allowFullScreen

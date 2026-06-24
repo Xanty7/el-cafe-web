@@ -54,7 +54,7 @@ export default function NosotrosPage() {
       title: "El origen",
       description: "Lorem ipsum dolor sit amet consectetur adipiscing elit odio, montes ligula aliquam urna tristique commodo ultricies lacus, nam primis aptent convallis aliquet ut dictum. Senectus viverra euismod vitae fringilla diam curabitur nibh sagittis, suspendisse elementum nostra varius himenaeos vestibulum cubilia.",
       image: "/nosotros_1.jpg",
-      alt: "El local original de Bartolo Café"
+      alt: "El local original"
     },
     {
       year: "2019",
@@ -68,7 +68,7 @@ export default function NosotrosPage() {
       title: "Lorem ipsum dolor",
       description: "Lorem ipsum dolor sit amet consectetur adipiscing elit odio, montes ligula aliquam urna tristique commodo ultricies lacus, nam primis aptent convallis aliquet ut dictum. Senectus viverra euismod vitae fringilla diam curabitur nibh sagittis, suspendisse elementum nostra varius himenaeos vestibulum cubilia.",
       image: "/nosotros_3.jpg",
-      alt: "Gente disfrutando en Bartolo Café"
+      alt: "Gente disfrutando en El Café"
     }
   ];
 

@@ -22,8 +22,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "BARTOLO café",
-  description: "BARTOLO café - El arte de la pausa",
+  title: "EL CAFÉ",
+  description: "EL CAFÉ - El arte de la pausa",
 };
 
 export default function RootLayout({
