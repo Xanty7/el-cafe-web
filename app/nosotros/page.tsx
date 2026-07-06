@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { ImageWithLightbox } from "@/components/ImageWithLightbox";
+import Image from "next/image";
 
 export default function NosotrosPage() {
   useEffect(() => {
@@ -78,8 +79,8 @@ export default function NosotrosPage() {
       <main className="pt-20 min-h-screen bg-surface-container-low overflow-x-hidden">
         <section className="relative w-full py-32 md:py-48 flex items-center justify-center overflow-hidden border-b border-primary/10">
           <div className="absolute inset-0 z-0 overflow-hidden">
-            <div id="hero-parallax-img" className="absolute inset-x-0 -top-[15%] h-[130%]">
-              <img alt="Fondo Nuestra Historia" className="w-full h-full object-cover" src="/nosotros_portada.jpg" />
+            <div id="hero-parallax-img" className="absolute inset-x-0 -top-[15%] h-[130%] relative">
+              <Image alt="Fondo Nuestra Historia" fill className="object-cover" src="/nosotros_portada.jpg" priority />
             </div>
             <div className="absolute inset-0 bg-primary/70 mix-blend-multiply"></div>
           </div>

@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
+import Image from 'next/image';
 
-interface ImageWithLightboxProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+interface ImageWithLightboxProps {
   src: string;
   alt: string;
+  className?: string;
   images?: { src: string; alt: string }[];
   initialIndex?: number;
 }
@@ -15,8 +17,7 @@ export const ImageWithLightbox: React.FC<ImageWithLightboxProps> = ({
   alt, 
   className, 
   images, 
-  initialIndex = 0, 
-  ...props 
+  initialIndex = 0
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -84,13 +85,16 @@ export const ImageWithLightbox: React.FC<ImageWithLightboxProps> = ({
 
   return (
     <>
-      <img
-        src={src}
-        alt={alt}
-        className={`${clickableClassName} cursor-pointer transition-all duration-500 hover:brightness-105 hover:scale-[1.02] active:scale-[0.98]`}
-        onClick={() => setIsOpen(true)}
-        {...props}
-      />
+      <div className="relative w-full h-full overflow-hidden">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className={`${clickableClassName} cursor-pointer transition-all duration-500 hover:brightness-105 hover:scale-[1.02] active:scale-[0.98] object-cover`}
+          onClick={() => setIsOpen(true)}
+        />
+      </div>
       
       {mounted && isOpen && createPortal(
         <div 

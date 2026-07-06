@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Divider } from "@/components/Divider";
 import { ScrollObserver } from "@/components/ScrollObserver";
 import { Carousel_003 } from "@/components/Carousel_003";
@@ -47,8 +48,8 @@ export default async function Home() {
         {/* HERO SECTION */}
         <section className="relative w-full min-h-screen min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0 overflow-hidden">
-            <div id="hero-parallax-img" className="absolute inset-x-0 -top-[15%] h-[130%]">
-              <img alt="Coffee Background" className="w-full h-full object-cover" src="/hero_portada.jpg" />
+            <div id="hero-parallax-img" className="absolute inset-x-0 -top-[15%] h-[130%] relative">
+              <Image alt="Coffee Background" fill className="object-cover" src="/hero_portada.jpg" priority />
             </div>
             <div className="absolute inset-0 bg-black/40"></div>
           </div>
