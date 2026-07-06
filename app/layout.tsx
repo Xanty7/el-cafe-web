@@ -11,7 +11,7 @@ config.autoAddCss = false;
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["400", "600"],
+  weight: ["200", "300", "400", "600"],
 });
 
 const playfair = Playfair_Display({
@@ -22,8 +22,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "EL CAFÉ",
-  description: "EL CAFÉ - El arte de la pausa",
+  title: "12oz | Café de Especialidad",
+  description: "12oz - Café de especialidad en General Pico, La Pampa. Directo al grano.",
 };
 
 export default function RootLayout({
@@ -35,11 +35,15 @@ export default function RootLayout({
     <html
       lang="es"
       className={`scroll-smooth ${montserrat.variable} ${playfair.variable} antialiased`}
+      suppressHydrationWarning
     >
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
-      <body className="min-h-full flex flex-col bg-background text-on-background font-body-lg selection:bg-primary-container selection:text-on-primary-container">
+      <body
+        className="min-h-full flex flex-col bg-background text-on-background font-body-lg selection:bg-primary-container selection:text-on-primary-container"
+        suppressHydrationWarning
+      >
         <NoiseOverlay />
         <Navbar />
         {children}

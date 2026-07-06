@@ -1,6 +1,6 @@
-import { Divider } from "@/components/Divider";
 import { getMenuData } from "@/lib/sheets";
 import { ScrollObserver } from "@/components/ScrollObserver";
+import { MenuCategorized } from "@/components/MenuCategorized";
 
 export const revalidate = 60; // Revalidate at most every minute
 
@@ -30,56 +30,7 @@ export default async function MenuPage() {
           </div>
         </section>
 
-        {menuData.map((category, index) => {
-          const isLight = index % 3 === 0;
-          const isDark = index % 3 === 1;
-          
-          const sectionBg = isLight ? 'bg-surface-container-low' : isDark ? 'dark-block' : 'bg-primary';
-          const textMain = isLight ? 'text-primary' : 'text-primary-fixed';
-          const textDesc = isLight ? 'text-on-surface-variant/70' : 'text-primary-fixed/70';
-          const borderStyle = isLight ? 'border-primary/20 hover:border-primary' : 'border-primary-fixed/20 hover:border-primary-fixed';
-
-          return (
-            <section key={index} className={`py-16 md:py-24 ${sectionBg}`}>
-              <div className="max-w-3xl mx-auto px-margin-mobile md:px-margin-desktop">
-                <div className="text-center mb-12 reveal-on-scroll">
-                  <h2 className={`text-3xl md:text-4xl font-bold mb-6 ${textMain}`}>
-                    {category.category}
-                  </h2>
-                  <Divider isLight={isLight} />
-                </div>
-                
-                <div className="grid grid-cols-1 gap-6 text-left">
-                  {category.items.map((item, itemIndex) => (
-                    <div 
-                      key={itemIndex} 
-                      className={`group border-b pb-4 transition-all duration-500 reveal-on-scroll delay-100 ${borderStyle}`}
-                    >
-                      <div className="flex justify-between items-start mb-2 gap-4">
-                        <h3 className={`text-xl md:text-2xl font-bold group-hover:italic group-hover:translate-x-2 transition-all duration-500 flex-1 ${textMain}`}>
-                          {item.name}
-                          {item.portion && (
-                            <span className={`block md:inline md:ml-3 text-sm md:text-base font-normal italic opacity-80 ${textDesc}`}>
-                              ({item.portion})
-                            </span>
-                          )}
-                        </h3>
-                        <span className={`font-body-md font-bold transition-transform duration-500 group-hover:-translate-x-2 whitespace-nowrap ${textMain}`}>
-                          {item.price}
-                        </span>
-                      </div>
-                      {item.description && (
-                        <p className={`font-body-md ${textDesc}`}>
-                          {item.description}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-          );
-        })}
+        <MenuCategorized menuData={menuData} />
       </main>
     </>
   );

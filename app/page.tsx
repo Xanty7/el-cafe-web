@@ -1,8 +1,11 @@
 import { Divider } from "@/components/Divider";
 import { ScrollObserver } from "@/components/ScrollObserver";
-import { GalleryCarousel } from "@/components/GalleryCarousel";
+import { Carousel_003 } from "@/components/Carousel_003";
 import { getMenuData } from "@/lib/sheets";
 import { ImageWithLightbox } from "@/components/ImageWithLightbox";
+import { Star } from "lucide-react";
+import { TrustindexWidget } from "@/components/TrustindexWidget";
+import { InteractiveMap } from "@/components/InteractiveMap";
 
 export const revalidate = 60; // Revalidate at most every minute
 
@@ -31,9 +34,9 @@ export default async function Home() {
   }
 
   const galleryImages = [
-    "/latte.jpg",
-    "/atmosfera.jpg",
-    "/desayuno.jpg"
+    { src: "/latte.jpg", alt: "Café de especialidad" },
+    { src: "/atmosfera.jpg", alt: "Nuestra atmósfera" },
+    { src: "/desayuno.jpg", alt: "Opciones de desayuno" },
   ];
 
   return (
@@ -54,12 +57,15 @@ export default async function Home() {
             <div className="flex-1 flex items-center">
               <div className="text-center reveal-on-scroll">
                 <span className="text-sm md:text-base font-semibold text-white tracking-[0.3em] uppercase mb-4 md:mb-6 block drop-shadow-lg">EST. 2026</span>
-                <h1 className="font-display-lg text-5xl md:text-7xl text-white leading-none drop-shadow-2xl tracking-widest uppercase inline-block">
-                  EL CAFÉ
+                <h1 className="font-body-lg text-6xl md:text-8xl text-white leading-none drop-shadow-2xl tracking-wide font-extralight inline-block">
+                  12oz
                 </h1>
                 <p className="text-white/80 mt-6 md:mt-8 font-body-lg text-xl md:text-2xl italic drop-shadow-md max-w-2xl mx-auto">
-                  Lorem ipsum dolor sit, amet.
+                  Café de especialidad. Directo al grano.
                 </p>
+                <div className="mt-6 flex justify-center">
+                  <TrustindexWidget widgetId="87263be754b4964c8656ac5212f" className="min-h-[46px] flex items-center justify-center" />
+                </div>
               </div>
             </div>
             <a href="#heritage" className="text-primary-fixed font-label-caps text-xs tracking-widest uppercase flex flex-col items-center gap-2 hover:opacity-80 transition-opacity animate-bounce-slow drop-shadow-md">
@@ -164,7 +170,9 @@ export default async function Home() {
               <Divider isLight={true} />
             </div>
 
-            <GalleryCarousel images={galleryImages} />
+            <div className="flex w-full items-center justify-center overflow-hidden py-4">
+              <Carousel_003 images={galleryImages} showPagination loop showNavigation autoplay />
+            </div>
 
             <div className="text-center mt-6 text-on-surface-variant/50 font-label-caps tracking-[0.3em] uppercase text-xs flex items-center justify-center gap-4 md:hidden reveal-on-scroll delay-300">
               <span className="material-symbols-outlined text-sm animate-pulse">swipe_right</span>
@@ -180,23 +188,34 @@ export default async function Home() {
         </section>
 
         {/* REVIEWS SECTION */}
-        <section className="py-16 md:py-24 bg-primary text-on-primary" id="reviews">
+        <section className="py-20 md:py-28 bg-primary text-on-primary" id="reviews">
           <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center">
-            <span className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase mb-12 block reveal-on-scroll opacity-60">Reseñas</span>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-12">
-              {[
-                { text: "Lorem ipsum dolor sit amet consectetur, adipiscing elit facilisi scelerisque.", author: "María S." },
-                { text: "Lorem ipsum dolor sit amet consectetur, adipiscing elit felis.", author: "Juan P." },
-                { text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit habitant scelerisque, massa cursus dictumst.", author: "Ana L." }
-              ].map((review, i) => (
-                <div key={i} className={`flex flex-col items-center text-center reveal-on-scroll delay-${(i + 1) * 100}`}>
-                  <span className="text-4xl leading-none h-6 font-display-lg opacity-30">"</span>
-                  <p className="font-body-md text-sm md:text-base italic mb-4 max-w-xs opacity-90">
-                    {review.text}
-                  </p>
-                  <span className="font-label-caps text-[10px] uppercase tracking-[0.2em] opacity-60">— {review.author}</span>
+            
+            <div className="flex flex-col items-center justify-center mb-16 reveal-on-scroll">
+              <span className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase opacity-60 mb-4 block">Reseñas</span>
+              <a 
+                href="https://www.google.com/maps/place/12+Onzas+Cafe/@-35.6592511,-63.7531791,17z/data=!4m8!3m7!1s0x95c37de7c09bd151:0xc34edb57fb816ebf!8m2!3d-35.6592511!4d-63.7531791!9m1!1b1!16s%2Fg%2F11h7fy8l3q?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col sm:flex-row items-center gap-3 bg-white/[0.04] border border-white/10 px-6 py-3 rounded-full hover:bg-white/[0.08] hover:border-amber-400/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+              >
+                <div className="flex items-center gap-1.5">
+                  <span className="text-lg font-bold text-amber-400">4.7</span>
+                  <div className="flex text-amber-400">
+                    <Star className="w-4 h-4 fill-current" />
+                    <Star className="w-4 h-4 fill-current" />
+                    <Star className="w-4 h-4 fill-current" />
+                    <Star className="w-4 h-4 fill-current" />
+                    <Star className="w-4 h-4 fill-current/70" />
+                  </div>
                 </div>
-              ))}
+                <div className="hidden sm:block w-px h-4 bg-white/20"></div>
+                <span className="text-xs opacity-80 font-medium tracking-wide">Google Reviews (163 opiniones reales)</span>
+              </a>
+            </div>
+
+            <div className="reveal-on-scroll mt-8">
+              <TrustindexWidget widgetId="a8186537543396347326d21ac38" />
             </div>
           </div>
         </section>
@@ -212,46 +231,35 @@ export default async function Home() {
                     <span className="material-symbols-outlined text-primary-fixed-dim">location_on</span>
                     Ubicación
                   </h3>
-                  <p className="font-body-lg text-primary-fixed/70 md:pl-9">Calle 17 500<br />Gral. Pico, La Pampa</p>
+                  <p className="font-body-lg text-primary-fixed/85 md:pl-9">Calle 15 N° 1022<br />Gral. Pico, La Pampa</p>
                 </div>
                 <div className="reveal-on-scroll delay-200">
                   <h3 className="text-2xl font-bold text-primary-fixed mb-6 flex items-center justify-center md:justify-start gap-3">
                     <span className="material-symbols-outlined text-primary-fixed-dim">phone_iphone</span>
                     Contacto
                   </h3>
-                  <p className="font-body-lg text-primary-fixed/70 md:pl-9">+54 2302 554433</p>
+                  <p className="font-body-lg text-primary-fixed/85 md:pl-9">Delivery: 2302-308581</p>
                 </div>
                 <div className="reveal-on-scroll delay-300">
                   <h3 className="text-2xl font-bold text-primary-fixed mb-6 flex items-center justify-center md:justify-start gap-3">
                     <span className="material-symbols-outlined text-primary-fixed-dim">schedule</span>
                     Horarios
                   </h3>
-                  <ul className="font-body-md text-primary-fixed/70 space-y-4 md:pl-9">
+                  <ul className="font-body-md text-primary-fixed/85 space-y-4 md:pl-9">
                     <li className="flex justify-between border-b border-primary-fixed/20 pb-2 transition-colors hover:border-primary-fixed">
                       <span>Lun - Vie</span>
-                      <span>08:00 - 20:00</span>
+                      <span>08:00 - 12:00 y 16:30 - 20:30</span>
                     </li>
                     <li className="flex justify-between border-b border-primary-fixed/20 pb-2 transition-colors hover:border-primary-fixed">
                       <span>Sábados</span>
-                      <span>09:00 - 21:00</span>
-                    </li>
-                    <li className="flex justify-between border-b border-primary-fixed/20 pb-2 transition-colors hover:border-primary-fixed">
-                      <span>Domingos</span>
-                      <span>Cerrado</span>
+                      <span>09:00 - 13:00 y 16:30 - 20:30</span>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
             <div className="relative h-[400px] md:h-auto overflow-hidden">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d102948.33744654922!2d-63.834015!3d-35.65664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95c37ce2b17f5413%3A0x6b2b73315a67a0a6!2sGeneral%20Pico%2C%20La%20Pampa!5e0!3m2!1sen!2sar!4v1718000000000!5m2!1sen!2sar"
-                className="absolute inset-0 w-full h-full"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+              <InteractiveMap />
             </div>
           </div>
         </section>

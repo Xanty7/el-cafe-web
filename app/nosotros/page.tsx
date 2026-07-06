@@ -68,7 +68,7 @@ export default function NosotrosPage() {
       title: "Lorem ipsum dolor",
       description: "Lorem ipsum dolor sit amet consectetur adipiscing elit odio, montes ligula aliquam urna tristique commodo ultricies lacus, nam primis aptent convallis aliquet ut dictum. Senectus viverra euismod vitae fringilla diam curabitur nibh sagittis, suspendisse elementum nostra varius himenaeos vestibulum cubilia.",
       image: "/nosotros_3.jpg",
-      alt: "Gente disfrutando en El Café"
+      alt: "Gente disfrutando en 12 Onzas"
     }
   ];
 
@@ -123,6 +123,8 @@ export default function NosotrosPage() {
                         <ImageWithLightbox
                           src={step.image}
                           alt={step.alt}
+                          images={storySteps.map(s => ({ src: s.image, alt: s.alt }))}
+                          initialIndex={index}
                           className="w-full h-full object-cover grayscale-[40%] transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-1000 pointer-events-none"></div>
