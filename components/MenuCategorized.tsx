@@ -11,12 +11,27 @@ interface MenuCategorizedProps {
 export function MenuCategorized({ menuData }: MenuCategorizedProps) {
   const [activeCategory, setActiveCategory] = useState<string>("");
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+  const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
   useEffect(() => {
     if (menuData.length > 0 && !activeCategory) {
       setActiveCategory(menuData[0].category);
     }
   }, [menuData, activeCategory]);
+
+  // Center active category tab horizontally in the sticky bar
+  useEffect(() => {
+    if (activeCategory) {
+      const activeButton = buttonRefs.current[activeCategory];
+      if (activeButton) {
+        activeButton.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "center",
+        });
+      }
+    }
+  }, [activeCategory]);
 
   // Track which category is currently scrolled into view
   useEffect(() => {
@@ -63,13 +78,14 @@ export function MenuCategorized({ menuData }: MenuCategorizedProps) {
     <>
       {/* Sticky categories bar */}
       <div className="sticky top-20 bg-background/95 backdrop-blur-md z-30 border-b border-primary/10 shadow-sm transition-all duration-300">
-        <div className="max-w-3xl mx-auto px-margin-mobile md:px-margin-desktop">
-          <div className="flex items-center gap-6 overflow-x-auto py-4 hide-scrollbar snap-x snap-mandatory">
+        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+          <div className="flex items-center justify-start md:justify-center gap-6 overflow-x-auto py-4 hide-scrollbar snap-x snap-mandatory">
             {menuData.map((cat, i) => {
               const isActive = activeCategory === cat.category;
               return (
                 <button
                   key={i}
+                  ref={(el) => { buttonRefs.current[cat.category] = el; }}
                   onClick={() => scrollToCategory(cat.category)}
                   className={`snap-center flex-none font-label-caps text-xs uppercase tracking-widest px-4 py-2 border-b-2 transition-all duration-300 whitespace-nowrap cursor-pointer ${
                     isActive

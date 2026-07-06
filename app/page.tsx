@@ -59,7 +59,7 @@ export default async function Home() {
                 <div className="mb-2 md:mb-6 pl-2 flex justify-start">
                   <TrustindexWidget widgetId="87263be754b4964c8656ac5212f" className="min-h-[46px] flex items-center justify-start" />
                 </div>
-                <h1 className="font-body-lg text-3xl sm:text-4xl md:text-7xl text-white leading-none drop-shadow-2xl tracking-wide font-semibold">
+                <h1 className="font-body-lg text-3xl sm:text-4xl md:text-7xl text-white leading-none drop-shadow-2xl tracking-tight font-semibold">
                   El arte de crear momentos en cada taza
                 </h1>
                 <p className="text-white/80 mt-2 md:mt-6 font-body-lg text-sm sm:text-base md:text-xl drop-shadow-md max-w-2xl">
