@@ -45,7 +45,7 @@ export default async function Home() {
       <div id="scroll-progress"></div>
       <main className="min-h-screen">
         {/* HERO SECTION */}
-        <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
+        <section className="relative w-full min-h-screen min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0 overflow-hidden">
             <div id="hero-parallax-img" className="absolute inset-x-0 -top-[15%] h-[130%]">
               <img alt="Coffee Background" className="w-full h-full object-cover" src="/hero_portada.jpg" />
@@ -53,22 +53,27 @@ export default async function Home() {
             <div className="absolute inset-0 bg-black/40"></div>
           </div>
 
-          <div className="relative z-10 flex flex-col justify-between items-center h-full w-full max-w-container-max px-margin-mobile md:px-margin-desktop pt-32 pb-16">
-            <div className="flex-1 flex items-center">
-              <div className="text-center reveal-on-scroll">
-                <span className="text-sm md:text-base font-semibold text-white tracking-[0.3em] uppercase mb-4 md:mb-6 block drop-shadow-lg">EST. 2026</span>
-                <h1 className="font-body-lg text-6xl md:text-8xl text-white leading-none drop-shadow-2xl tracking-wide font-extralight inline-block">
-                  12oz
+          <div className="relative z-10 flex flex-col justify-between items-start min-h-screen min-h-[100dvh] w-full max-w-container-max px-margin-mobile md:px-margin-desktop pt-24 pb-4 md:pt-36 md:pb-16">
+            <div className="flex-1 flex items-center w-full my-auto">
+              <div className="text-left reveal-on-scroll max-w-3xl">
+                <div className="mb-2 md:mb-6 pl-2 flex justify-start">
+                  <TrustindexWidget widgetId="87263be754b4964c8656ac5212f" className="min-h-[46px] flex items-center justify-start" />
+                </div>
+                <h1 className="font-body-lg text-3xl sm:text-4xl md:text-7xl text-white leading-none drop-shadow-2xl tracking-wide font-semibold">
+                  El arte de crear momentos en cada taza
                 </h1>
-                <p className="text-white/80 mt-6 md:mt-8 font-body-lg text-xl md:text-2xl italic drop-shadow-md max-w-2xl mx-auto">
-                  Café de especialidad. Directo al grano.
+                <p className="text-white/80 mt-2 md:mt-6 font-body-lg text-sm sm:text-base md:text-xl drop-shadow-md max-w-2xl">
+                  Directo al grano. Tostamos con precisión y servimos con pasión para brindarte una experiencia sensorial inigualable en General Pico.
                 </p>
-                <div className="mt-6 flex justify-center">
-                  <TrustindexWidget widgetId="87263be754b4964c8656ac5212f" className="min-h-[46px] flex items-center justify-center" />
+                <div className="mt-4 md:mt-10">
+                  <a className="inline-flex items-center justify-center gap-3 border border-white text-white px-6 py-3 md:px-8 md:py-4 font-label-caps text-xs md:text-label-caps uppercase hover:bg-white hover:text-black transition-all duration-500 tracking-widest hover:scale-105 active:scale-95 group/btn cursor-pointer" href="/menu">
+                    Ver Menú
+                    <span className="material-symbols-outlined text-base transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+                  </a>
                 </div>
               </div>
             </div>
-            <a href="#heritage" className="text-primary-fixed font-label-caps text-xs tracking-widest uppercase flex flex-col items-center gap-2 hover:opacity-80 transition-opacity animate-bounce-slow drop-shadow-md">
+            <a href="#heritage" className="self-center text-primary-fixed font-label-caps text-xs tracking-widest uppercase flex flex-col items-center gap-2 hover:opacity-80 transition-opacity animate-bounce-slow drop-shadow-md">
               Deslizá hacia abajo
               <span className="material-symbols-outlined font-light">keyboard_arrow_down</span>
             </a>
